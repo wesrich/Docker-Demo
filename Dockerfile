@@ -5,6 +5,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+RUN npm run build
 
 ENTRYPOINT ["npm"]
-CMD ["run", "dev"]
+CMD ["start"]
