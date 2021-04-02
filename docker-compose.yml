@@ -9,6 +9,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    profiles:
+      - everything
+      - database
 
   app:
     build:
@@ -25,5 +28,9 @@ services:
       retries: 5
     ports:
       - 3000:3000
+    profiles:
+      - everything
+      - api
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/app_dev
+      - OTHER_SERVICE_URL=http://host.docker.internal:3001
