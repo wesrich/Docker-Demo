@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=password
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/app_dev
