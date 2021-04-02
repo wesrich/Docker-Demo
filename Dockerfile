@@ -25,5 +25,6 @@ COPY --from=node-deps /app/node_modules ./node_modules
 COPY --from=next-build /app/.next ./.next
 COPY package.json package-lock.json ./
 COPY public ./public
+HEALTHCHECK CMD wget -q http://localhost:3000 -O /dev/null
 ENTRYPOINT ["npm"]
 CMD ["start"]

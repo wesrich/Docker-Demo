@@ -17,6 +17,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: wget -q http://localhost:3000 -O /dev/null
+      interval: 5s
+      timeout: 3s
+      start_period: 5s
+      retries: 5
     ports:
       - 3000:3000
     environment:
